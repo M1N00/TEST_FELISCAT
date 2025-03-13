@@ -37,19 +37,29 @@
 
     // Initialisation de Firebase
     firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
     const storage = firebase.storage();
 
-    // Référence du fichier à envoyer
-    const storageRef = storage.ref('images/stars.jpg');
+    // Connexion anonyme
+    auth.signInAnonymously()
+        .then(() => {
+            console.log("Connecté anonymement UwU ✨");
 
-    // Création d’un fichier Blob
-    const file = new Blob(['Hello, world!'], { type: 'text/plain' });
+            // Référence du fichier à uploader
+            const storageRef = storage.ref('images/stars.jpg');
 
-    // Upload du fichier
-    storageRef.put(file).then((snapshot) => {
-        console.log('Uploaded a blob or file! 🎉');
-    }).catch((error) => {
-        console.error('Oh no! Erreur pendant l\'upload : ', error);
-    });
+            // Création d’un fichier Blob
+            const file = new Blob(['Hello, world!'], { type: 'text/plain' });
+
+            // Upload du fichier
+            storageRef.put(file).then((snapshot) => {
+                console.log('✨ Fichier uploadé avec succès ! ✨');
+            }).catch((error) => {
+                console.error('Oh non ! Erreur pendant l\'upload : ', error);
+            });
+        })
+        .catch((error) => {
+            console.error("Erreur d'authentification 😿", error);
+        });
 </script>
 </html>
