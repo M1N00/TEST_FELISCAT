@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST CHECKOUT</title>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"></script>
 </head>
 <body>
     <h1>CECI EST UN TEST ET N'EST PAS LE SITE WEB FINAL</h1>
@@ -23,7 +20,8 @@
 <script type="module" src="script.js"></script>
 
 
-<script type="module">
+ <!-- Chargement des scripts Firebase en mode module -->
+ <script type="module">
     // Configuration Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyDvDA-ZKxv4NI9ukVOp3PKh6aK4FgRnfJU",
@@ -35,11 +33,12 @@
         measurementId: "G-0WK7VFS68B"
     };
 
-    // Initialisation de Firebase
-    import { initializeApp } from "firebase/app";
-    import { getAuth, signInAnonymously } from "firebase/auth";
-    import { getStorage, ref, uploadBytes } from "firebase/storage";
+    // Importation des fonctions Firebase à partir des bons liens CDN
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
+    // Initialisation de Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const storage = getStorage(app);
