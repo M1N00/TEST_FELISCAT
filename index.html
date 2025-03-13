@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST CHECKOUT</title>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"></script>
 </head>
 <body>
     <h1>CECI EST UN TEST ET N'EST PAS LE SITE WEB FINAL</h1>
@@ -36,23 +36,27 @@
     };
 
     // Initialisation de Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const storage = firebase.storage();
+    import { initializeApp } from "firebase/app";
+    import { getAuth, signInAnonymously } from "firebase/auth";
+    import { getStorage, ref, uploadBytes } from "firebase/storage";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const storage = getStorage(app);
 
     // Connexion anonyme
-    auth.signInAnonymously()
+    signInAnonymously(auth)
         .then(() => {
             console.log("Connecté anonymement UwU ✨");
 
             // Référence du fichier à uploader
-            const storageRef = storage.ref('images/stars.jpg');
+            const storageRef = ref(storage, 'images/stars.jpg');
 
             // Création d’un fichier Blob
             const file = new Blob(['Hello, world!'], { type: 'text/plain' });
 
             // Upload du fichier
-            storageRef.put(file).then((snapshot) => {
+            uploadBytes(storageRef, file).then((snapshot) => {
                 console.log('✨ Fichier uploadé avec succès ! ✨');
             }).catch((error) => {
                 console.error('Oh non ! Erreur pendant l\'upload : ', error);
