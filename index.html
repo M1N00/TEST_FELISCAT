@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST CHECKOUT</title>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js"></script>
 </head>
 <body>
     <h1>CECI EST UN TEST ET N'EST PAS LE SITE WEB FINAL</h1>
@@ -17,5 +20,36 @@
         
     </div>
 </body>
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
+
+
+<script>
+    // Configuration Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyDvDA-ZKxv4NI9ukVOp3PKh6aK4FgRnfJU",
+        authDomain: "bdd-pour-feliscat.firebaseapp.com",
+        projectId: "bdd-pour-feliscat",
+        storageBucket: "bdd-pour-feliscat.appspot.com",
+        messagingSenderId: "515873784145",
+        appId: "1:515873784145:web:12e18eeea0d4dbbc251370",
+        measurementId: "G-0WK7VFS68B"
+    };
+
+    // Initialisation de Firebase
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+
+    // Référence du fichier à envoyer
+    const storageRef = storage.ref('images/stars.jpg');
+
+    // Création d’un fichier Blob
+    const file = new Blob(['Hello, world!'], { type: 'text/plain' });
+
+    // Upload du fichier
+    storageRef.put(file).then((snapshot) => {
+        console.log('Uploaded a blob or file! 🎉');
+    }).catch((error) => {
+        console.error('Oh no! Erreur pendant l\'upload : ', error);
+    });
+</script>
 </html>
