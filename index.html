@@ -17,52 +17,5 @@
         
     </div>
 </body>
-<script type="module" src="script.js"></script>
-
-
- <!-- Chargement des scripts Firebase en mode module -->
- <script type="module">
-    // Configuration Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyDvDA-ZKxv4NI9ukVOp3PKh6aK4FgRnfJU",
-        authDomain: "bdd-pour-feliscat.firebaseapp.com",
-        projectId: "bdd-pour-feliscat",
-        storageBucket: "bdd-pour-feliscat.appspot.com",
-        messagingSenderId: "515873784145",
-        appId: "1:515873784145:web:12e18eeea0d4dbbc251370",
-        measurementId: "G-0WK7VFS68B"
-    };
-
-    // Importation des fonctions Firebase à partir des bons liens CDN
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    import { getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-
-    // Initialisation de Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const storage = getStorage(app);
-
-    // Connexion anonyme
-    signInAnonymously(auth)
-        .then(() => {
-            console.log("Connecté anonymement UwU ✨");
-
-            // Référence du fichier à uploader
-            const storageRef = ref(storage, 'images/stars.jpg');
-
-            // Création d’un fichier Blob
-            const file = new Blob(['Hello, world!'], { type: 'text/plain' });
-
-            // Upload du fichier
-            uploadBytes(storageRef, file).then((snapshot) => {
-                console.log('✨ Fichier uploadé avec succès ! ✨');
-            }).catch((error) => {
-                console.error('Oh non ! Erreur pendant l\'upload : ', error);
-            });
-        })
-        .catch((error) => {
-            console.error("Erreur d'authentification 😿", error);
-        });
-</script>
+<script src="script.js"></script>
 </html>
