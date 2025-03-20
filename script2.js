@@ -51,19 +51,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
  
 //ICI C'EST STRIPE
-import { Stripe } from 'https://js.stripe.com/v3/';
 
-const stripe = Stripe('pk_live_51R1saFHVJqXLjnEdvLEYp2Af9mM5k4YT1GPEpPK24OxueD4o0koQDp4rtjCbO702SmUcPwk29cEZ0nqEDDXjEOyF00ifTDFJpc'); // Remplacez par votre clé publique Stripe
+// Récupérer l'ID de session depuis l'URL
+const urlParams = new URLSearchParams(window.location.search);
+const sessionId = urlParams.get("session_id");
 
-async function retrieveSession() {
-    try {
-        const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-        const orderId = session.metadata.order_id;
-        console.log("ID de commande :", orderId);
-    } catch (error) {
-        console.error("Erreur lors de la récupération de la session :", error);
-    }
+if (sessionId) {
+    console.log("Session ID trouvé :", sessionId);
+} else {
+    console.error("Aucun session_id trouvé dans l'URL !");
 }
-
-retrieveSession();
 
