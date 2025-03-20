@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", () => {
 //ICI C'EST STRIPE
 import { Stripe } from 'https://js.stripe.com/v3/';
 
-const stripe = Stripe('your-publishable-key-here'); // Remplacez par votre clé publique Stripe
+const stripe = Stripe('pk_live_51R1saFHVJqXLjnEdvLEYp2Af9mM5k4YT1GPEpPK24OxueD4o0koQDp4rtjCbO702SmUcPwk29cEZ0nqEDDXjEOyF00ifTDFJpc'); // Remplacez par votre clé publique Stripe
 
 const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
 const orderId = session.metadata.order_id;
