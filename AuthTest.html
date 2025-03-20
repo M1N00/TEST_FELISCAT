@@ -1,0 +1,75 @@
+<script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+  
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDvDA-ZKxv4NI9ukVOp3PKh6aK4FgRnfJU",
+      authDomain: "bdd-pour-feliscat.firebaseapp.com",
+      projectId: "bdd-pour-feliscat",
+      storageBucket: "bdd-pour-feliscat.firebasestorage.app",
+      messagingSenderId: "515873784145",
+      appId: "1:515873784145:web:12e18eeea0d4dbbc251370"
+    };
+  
+    // Initialisation de Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+  
+    // Inscription d'un utilisateur
+    function registerUser(email, password) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log("Utilisateur inscrit :", userCredential.user);
+        })
+        .catch((error) => {
+          console.error("Erreur :", error.message);
+        });
+    }
+  
+    // Connexion d'un utilisateur
+    function loginUser(email, password) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          console.log("Utilisateur connecté :", userCredential.user);
+        })
+        .catch((error) => {
+          console.error("Erreur :", error.message);
+        });
+    }
+  
+    // Déconnexion d'un utilisateur
+    function logoutUser() {
+      signOut(auth)
+        .then(() => {
+          console.log("Utilisateur déconnecté");
+        })
+        .catch((error) => {
+          console.error("Erreur :", error.message);
+        });
+    }
+  
+    // Exemple d'utilisation
+    document.getElementById("registerBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      registerUser(email, password);
+    });
+  
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      loginUser(email, password);
+    });
+  
+    document.getElementById("logoutBtn").addEventListener("click", logoutUser);
+  </script>
+  
+  <!-- Interface utilisateur -->
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Mot de passe">
+  <button id="registerBtn">S'inscrire</button>
+  <button id="loginBtn">Se connecter</button>
+  <button id="logoutBtn">Se déconnecter</button>
+  

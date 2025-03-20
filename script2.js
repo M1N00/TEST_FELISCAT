@@ -1,3 +1,5 @@
+//ICI C'EST FIREBASE
+
 // Importation des modules Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
@@ -46,3 +48,10 @@ window.addEventListener("DOMContentLoaded", () => {
         uploadButton.addEventListener("click", uploadFile);
     }
 });
+
+
+//ICI C'EST STRIPE
+const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+const orderId = session.metadata.order_id;
+console.log("ID de commande :", orderId);
+
