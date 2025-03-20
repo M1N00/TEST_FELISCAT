@@ -51,6 +51,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 //ICI C'EST STRIPE
+import { Stripe } from 'https://js.stripe.com/v3/';
+
+const stripe = Stripe('your-publishable-key-here'); // Remplacez par votre clé publique Stripe
+
 const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
 const orderId = session.metadata.order_id;
 console.log("ID de commande :", orderId);
