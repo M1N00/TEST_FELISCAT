@@ -27,7 +27,7 @@ async function uploadFile() {
     }
 
     const file = fileInput.files[0];
-    const storageRef = ref(storage, `uploads/${file.name}`); // Stocke le fichier dans le dossier "uploads"
+    const storageRef = ref(storage, `uploads/${localStorage.getItem("userEmail")}/${file.name}`); // Stocke le fichier dans le dossier "uploads"
     
     try {
         const snapshot = await uploadBytes(storageRef, file);

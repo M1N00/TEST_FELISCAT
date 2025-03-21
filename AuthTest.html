@@ -33,6 +33,7 @@
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log("Utilisateur connecté :", userCredential.user);
+          localStorage.setItem("userEmail", email);
         })
         .catch((error) => {
           console.error("Erreur :", error.message);
@@ -64,8 +65,12 @@
     });
   
     document.getElementById("logoutBtn").addEventListener("click", logoutUser);
+
+   
   </script>
   
+
+
   <!-- Interface utilisateur -->
   <input type="email" id="email" placeholder="Email">
   <input type="password" id="password" placeholder="Mot de passe">
