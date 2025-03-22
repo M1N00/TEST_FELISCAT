@@ -19,7 +19,10 @@ const firebaseConfig = {
 // Initialisation de Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
-achat.addEventListener('click', () => {
+
+const Upload = document.getElementById('uploadButton');
+
+Upload.addEventListener('click', () => {
     // Fonction pour uploader un fichier vers Firebase Storage
     async function uploadFile() {
         console.log(document.getElementById("adresse").value);
