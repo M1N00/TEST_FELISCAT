@@ -8,11 +8,17 @@
 <body>
     <h2>Rentre ton adresse en bas en fait</h2>
     <input type="text" id="adresse" placeholder="Adresse">
-    <button id="valider">Submit</button>
-    <p><input type="file" id="fileInput">
+    
+    <p>
+        <input type="file" id="fileInput">
         <button id="uploadButton">Uploader</button>
     </p>
     
 </body>
 <script type="module" src="script2.js"></script>
+<script>
+    console.log("email : ");
+    console.log(localStorage.getItem("userEmail"));
+
+</script>
 </html>

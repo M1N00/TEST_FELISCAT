@@ -1,5 +1,7 @@
-//ICI C'EST FIREBASE
 
+
+//ICI C'EST FIREBASE
+ 
 // Importation des modules Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
@@ -17,36 +19,37 @@ const firebaseConfig = {
 // Initialisation de Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
+achat.addEventListener('click', () => {
+    // Fonction pour uploader un fichier vers Firebase Storage
+    async function uploadFile() {
+        console.log(document.getElementById("adresse").value);
 
-// Fonction pour uploader un fichier vers Firebase Storage
-async function uploadFile() {
-    const fileInput = document.getElementById("fileInput");
-    if (!fileInput || fileInput.files.length === 0) {
-        console.error("Aucun fichier sélectionné.");
-        return;
-    }
+        const fileInput = document.getElementById("fileInput");
+        if (!fileInput || fileInput.files.length === 0) {
+            console.error("Aucun fichier sélectionné.");
+            return;
+        }
 
-    const file = fileInput.files[0];
-    const storageRef = ref(storage, `uploads/${localStorage.getItem("userEmail")}/${file.name}`); // Stocke le fichier dans le dossier "uploads"
-    
-    try {
-        const snapshot = await uploadBytes(storageRef, file);
-        console.log("Upload réussi !", snapshot);
+        const file = fileInput.files[0];
+        const storageRef = ref(storage, `uploads/${localStorage.getItem("userEmail")}/${file.name}`); // Stocke le fichier dans le dossier "uploads"
         
-        // Récupérer l'URL du fichier stocké
-        const url = await getDownloadURL(snapshot.ref);
-        console.log("URL du fichier :", url);
-    } catch (error) {
-        console.error("Erreur lors de l'upload :", error);
-    }
-}
+        if(document.getElementById("adresse").value != "") {
+        
+                try {
+                    const snapshot = await uploadBytes(storageRef, file);
+                    console.log("Upload réussi !", snapshot);
+                    
+                    // Récupérer l'URL du fichier stocké
+                    const url = await getDownloadURL(snapshot.ref);
+                    console.log("URL du fichier :", url);
+                } catch (error) {
+                    console.error("Erreur lors de l'upload :", error);
+                }
+        }
 
-// Ajout d'un écouteur d'événement pour déclencher l'upload
-window.addEventListener("DOMContentLoaded", () => {
-    const uploadButton = document.getElementById("uploadButton");
-    if (uploadButton) {
-        uploadButton.addEventListener("click", uploadFile);
     }
+
+    uploadFile();
 });
 
  

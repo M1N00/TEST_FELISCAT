@@ -12,6 +12,8 @@
       messagingSenderId: "515873784145",
       appId: "1:515873784145:web:12e18eeea0d4dbbc251370"
     };
+
+    const Rep = document.getElementById("Log");
   
     // Initialisation de Firebase
     const app = initializeApp(firebaseConfig);
@@ -22,9 +24,15 @@
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           console.log("Utilisateur inscrit :", userCredential.user);
+          Rep.innerHTML = "Utilisateur inscrit !";
+          localStorage.setItem("userEmail", email);
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1000);
         })
         .catch((error) => {
           console.error("Erreur :", error.message);
+          Rep.innerHTML = "Une erreur est survenue !";
         });
     }
   
@@ -34,9 +42,15 @@
         .then((userCredential) => {
           console.log("Utilisateur connecté :", userCredential.user);
           localStorage.setItem("userEmail", email);
+          Rep.innerHTML = "Utilisateur connecter !";
+          
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1000);
         })
         .catch((error) => {
           console.error("Erreur :", error.message);
+          Rep.innerHTML = "Une erreur est survenue !";
         });
     }
   
@@ -45,9 +59,15 @@
       signOut(auth)
         .then(() => {
           console.log("Utilisateur déconnecté");
+          Rep.innerHTML = "Utilisateur déconnecter !";
+          localStorage.setItem("userEmail", "null");
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1000);
         })
         .catch((error) => {
           console.error("Erreur :", error.message);
+          Rep.innerHTML = "Une erreur est survenue !";
         });
     }
   
@@ -77,4 +97,5 @@
   <button id="registerBtn">S'inscrire</button>
   <button id="loginBtn">Se connecter</button>
   <button id="logoutBtn">Se déconnecter</button>
+  <p id="Log"></p>
   
