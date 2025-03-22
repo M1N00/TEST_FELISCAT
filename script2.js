@@ -35,7 +35,7 @@ Upload.addEventListener('click', () => {
         }
 
         const file = fileInput.files[0];
-        const storageRef = ref(storage, `uploads/${localStorage.getItem("userEmail")}/${sessionId}/${document.getElementById("adresse").value}, (,${new Date().toLocaleDateString().replace(/\//g, ' ')},),/${file.name}`); // Stocke le fichier dans le dossier "uploads" puis dans un dossier spécifique à l'utilisateur
+        const storageRef = ref(storage, `uploads/${localStorage.getItem("userEmail")}/${sessionId}/${document.getElementById("adresse").value} (${new Date().toLocaleDateString().replace(/\//g, ',')})/${file.name}`); // Stocke le fichier dans le dossier "uploads" puis dans un dossier spécifique à l'utilisateur
         
         if(document.getElementById("adresse").value != "") {
         
