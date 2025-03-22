@@ -1,3 +1,16 @@
+//ICI C'EST STRIPE
+
+// Récupérer l'ID de session depuis l'URL
+const urlParams = new URLSearchParams(window.location.search);
+const sessionId = urlParams.get("session_id");
+
+if (sessionId) {
+    console.log("Session ID trouvé :", sessionId);
+} else {
+    console.error("Aucun session_id trouvé dans l'URL !");
+    // Rediriger vers une page d'erreur ou afficher un message d'erreur
+    alert("Aucun session_id trouvé dans l'URL !");
+}
 
 
 //ICI C'EST FIREBASE
@@ -55,16 +68,5 @@ Upload.addEventListener('click', () => {
     uploadFile();
 });
 
- 
-//ICI C'EST STRIPE
 
-// Récupérer l'ID de session depuis l'URL
-const urlParams = new URLSearchParams(window.location.search);
-const sessionId = urlParams.get("session_id");
-
-if (sessionId) {
-    console.log("Session ID trouvé :", sessionId);
-} else {
-    console.error("Aucun session_id trouvé dans l'URL !");
-}
 
