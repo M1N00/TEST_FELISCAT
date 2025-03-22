@@ -2,7 +2,8 @@
 
 const button = document.getElementById('ACHETER');
 
-
+console.log("email : ");
+console.log(localStorage.getItem("userEmail"));
 button.addEventListener('click', () => {
   if(localStorage.getItem("userEmail") != null){
     console.log("email trouvé");
@@ -11,7 +12,7 @@ button.addEventListener('click', () => {
   }
   else{
     console.log("email non trouvé");
-    window.location.href = '/AuthTest.html';
+    window.location.href = 'AuthTest.html';
   }
 });
 
