@@ -1,6 +1,3 @@
-
-
-
 //ICI C'EST FIREBASE
  
 // Importation des modules Firebase
@@ -46,6 +43,8 @@ Upload.addEventListener('click', () => {
                     // Récupérer l'URL du fichier stocké
                     const url = await getDownloadURL(snapshot.ref);
                     console.log("URL du fichier :", url);
+
+                    SendMailToBOT(url,document.getElementById("adresse").value,sessionId);
                 } catch (error) {
                     console.error("Erreur lors de l'upload :", error);
                 }
@@ -71,6 +70,25 @@ if (sessionId) {
     alert("Aucun session_id trouvé dans l'URL !");
 }
 
+//ICI C'EST MAILJS
 
+function SendMailToBOT(ImageURL,adresse,sessionId) {
+    // Initialiser EmailJS avec ton USER ID
+    emailjs.init('u0luYOls1ADrXhG0M'); // Remplace par ton vrai USER ID
 
+    // Paramètres du template
+    const templateParams = {
+        Image_link: ImageURL,
+        ADRESSE: adresse,
+        ID_STRIPE: sessionId
+    };
 
+    // Envoyer l'email automatiquement au chargement
+    emailjs.send('service_5djo6mt', 'template_c1cn5ho', templateParams)
+        .then(function(response) {
+            console.log('✅ Email envoyé !', response.status, response.text);
+        })
+        .catch(function(error) {
+            console.error('❌ Erreur lors de l\'envoi', error);
+        });
+}
